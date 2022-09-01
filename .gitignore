@@ -1,0 +1,6 @@
+pnpm-lock.yaml
+package-lock.json
+.env
+node_modules/
+**/.DS_Store
+data/
