@@ -1,7 +1,7 @@
 {
-  "name": "dbqueries",
+  "name": "db-utils",
   "version": "1.0.0",
-  "description": "",
+  "description": "All database utils for Overcord",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon .",
@@ -13,7 +13,6 @@
   "dependencies": {
     "debug": "^4.3.4",
     "sequelize": "^6.21.4",
-    "sequelize-json": "^2.1.2",
     "sqlite3": "^5.0.11",
     "uuid": "^8.3.2"
   },

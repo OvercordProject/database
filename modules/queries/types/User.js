@@ -2,7 +2,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-use-before-define */
 const models = require('../../../models');
-const queries = require('../index');
 
 class User {
   #queue;
@@ -124,14 +123,14 @@ async function _edit(key, value) {
         discordId: this.discordId,
       },
     })
-    .then(([edited]) => {
-      if (edited) {
-        this[key] = value;
-        return resolve(this);
-      }
-      return error('An error occured');
-    })
-    .catch((e) => error(e));
+      .then(([edited]) => {
+        if (edited) {
+          this[key] = value;
+          return resolve(this);
+        }
+        return error('An error occured');
+      })
+      .catch((e) => error(e));
   });
 }
 
@@ -142,17 +141,17 @@ async function _delete() {
         discordId: this.discordId,
       },
     })
-    .then((deleted) => {
-      if (deleted) {
-        Object.keys(this).forEach((e) => {
-          delete this[e];
-        });
-        this.deleted = true;
-        return resolve(true);
-      }
-      return error('An error occured');
-    })
-    .catch((e) => error(e));
+      .then((deleted) => {
+        if (deleted) {
+          Object.keys(this).forEach((e) => {
+            delete this[e];
+          });
+          this.deleted = true;
+          return resolve(true);
+        }
+        return error('An error occured');
+      })
+      .catch((e) => error(e));
   });
 }
 

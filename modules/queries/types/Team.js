@@ -76,10 +76,6 @@ function _toString(data) {
   return JSON.stringify(data);
 }
 
-function querySelector(value) {
-  return value.includes('-') ? { id: value } : { name: value };
-}
-
 function searchUser(toSearch, members) {
   for (let i = 0; i < members.length; i++) {
     if (members[i].id === toSearch) {
@@ -99,14 +95,14 @@ async function _edit(key, value) {
         id: this.id,
       },
     })
-    .then(([edited]) => {
-      if (edited) {
-        this[key] = value;
-        return resolve(this);
-      }
-      return error('An error occured');
-    })
-    .catch((e) => error(e));
+      .then(([edited]) => {
+        if (edited) {
+          this[key] = value;
+          return resolve(this);
+        }
+        return error('An error occured');
+      })
+      .catch((e) => error(e));
   });
 }
 
@@ -149,14 +145,15 @@ async function _removeMember(userId) {
       where: {
         id: this.id,
       },
-    }).then(([edited]) => {
-      if (edited) {
-        return resolve(this);
-      }
-      error('An error occured');
-    });
-  })
-  .catch((e) => error(e));
+    })
+      .then(([edited]) => {
+        if (edited) {
+          return resolve(this);
+        }
+        error('An error occured');
+      })
+      .catch((e) => error(e));
+  });
 }
 
 async function _delete() {
